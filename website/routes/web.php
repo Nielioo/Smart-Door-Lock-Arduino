@@ -23,3 +23,7 @@ Route::middleware(['auth'])->group(function() {
 		'/home' => HomeController::class,
 	]);
 });
+
+Route::get('/prism-team', function () {
+    return view('ourTeam');
+});
