@@ -24,3 +24,7 @@ Route::get('/register', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+
+Route::get('/prism-team', function () {
+    return view('ourTeam');
+});
