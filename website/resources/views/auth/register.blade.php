@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
+@section('title', 'Register')
+
 @section('main_content')
 <div class="login-box">
 	<h2>Register</h2>
