@@ -27,6 +27,5 @@ Route::middleware(['auth'])->group(function() {
 
 	Route::resources([
 		'/home' => HomeController::class,
-		'/main' => MainController::class,
 	]);
 });

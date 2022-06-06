@@ -14,19 +14,21 @@
     <section>
         <div class="login-box">
             <h2>Login</h2>
-            <form>
+            <form id="formLogin" method="POST" action="{{ route('login') }}">
+				@csrf
+
                 <div class="user-box">
-                    <input type="text" name="" required="">
-                    <label>Username</label>
+                    <input id="email" type="email" name="" required="">
+                    <label>Email</label>
                 </div>
                 <div class="user-box">
-                    <input type="password" name="" required="">
+                    <input id="password" type="password" name="" required="">
                     <label>Password</label>
                 </div>
                 <div>
-                    <a class="auth" href="/register">Register Here</a>
+                    <a class="auth" href="{{ route('login') }}">Login Here</a>
                 </div>
-                <a class="submit" href="/dashboard">
+                <a class="submit" onclick="document.getElementById('formLogin').submit()">
                     <span></span>
                     <span></span>
                     <span></span>
