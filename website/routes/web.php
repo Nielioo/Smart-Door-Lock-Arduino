@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\DoorController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
