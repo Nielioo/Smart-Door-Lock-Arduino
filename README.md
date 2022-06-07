@@ -19,9 +19,10 @@ php artisan passport:install
 
 > **Run** ```php artisan passport:install``` **if oauth_clients gone**
 
-> **Radiance Seeder - Please do it in order**
+> **Prism IoT Seeder - Please do it in order**
 ```
-php artisan db:seed --class=SeederFile
+php artisan db:seed --class=UserSeeder
+php artisan db:seed --class=DoorSeeder
 ```
 
 > **Quick Guide - When you wanna refresh the database**
