@@ -115,38 +115,41 @@
 											{{ $door->is_locked == false ? 'Unlocked' : 'Locked' }}
 										</td>
 										<td>
-											<div>
-												<a href="#" class="btn btn-primary"
-													onclick="event.preventDefault();
+											<div class="d-flex justify-content-end">
+												<a href="#" class="btn btn-primary col-2" onclick="event.preventDefault();
 													document.getElementById('status-form-{{ $loop->iteration }}').submit();">
-													@if ($door->is_locked == false)
-													<i class="fas fa-lock"></i>
-													<span>Lock</span>
-													@else
-													<i class="fas fa-lock-open"></i>
-													<span>Unlock</span>
-													@endif
+													<div class="d-flex justify-content-start align-items-center">
+														@if ($door->is_locked == false)
+														<i class="fas fa-lock"></i>
+														<span class="flex-grow-1">Lock</span>
+														@else
+														<i class="fas fa-lock-open"></i>
+														<span class="flex-grow-1">Unlock</span>
+														@endif
+													</div>
 												</a>
 
-												<a href="{{ route('doors.edit', $door->id) }}" class="btn btn-info">
+												<a href="{{ route('doors.edit', $door->id) }}"
+													class="btn btn-info px-3 mx-2">
 													<i class="far fa-edit"></i>
 													<span>Edit</span>
 												</a>
 
-												<a href="#" class="btn btn-danger" onclick="event.preventDefault();
+												<a href="#" class="btn btn-danger px-3" onclick="event.preventDefault();
 														 document.getElementById('delete-form-{{ $loop->iteration }}').submit();">
 													<i class="far fa-trash-alt"></i>
 													<span>Delete</span>
 												</a>
-												<form id="status-form-{{ $loop->iteration }}" action="{{ route('doors.update', $door->id) }}" method="POST">
+												<form id="status-form-{{ $loop->iteration }}"
+													action="{{ route('doors.update', $door->id) }}" method="POST">
 													@csrf
 													@method('PATCH')
 													<input type="hidden" name="name" value="{{ $door->name }}">
 													<input type="hidden" name="is_locked"
 														value="{{ $door->is_locked == false ? 1 : 0}}">
 												</form>
-												<form id="delete-form-{{ $loop->iteration }}" action="{{ route('doors.destroy', $door->id) }}"
-													method="POST">
+												<form id="delete-form-{{ $loop->iteration }}"
+													action="{{ route('doors.destroy', $door->id) }}" method="POST">
 													@csrf
 													@method('DELETE')
 												</form>

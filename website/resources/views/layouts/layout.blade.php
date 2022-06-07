@@ -22,6 +22,8 @@
 	<div class="container pt-5">
 		@yield('main_content')
 	</div>
+
+	@yield('script')
 </body>
 
 </html>
