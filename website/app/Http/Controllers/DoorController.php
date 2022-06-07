@@ -60,8 +60,7 @@ class DoorController extends Controller
 	 */
 	public function show($doorId)
 	{
-		$title = 'Door Detail';
-		return view('doors.doorShow', compact('title'));
+		//
 	}
 
 	/**
