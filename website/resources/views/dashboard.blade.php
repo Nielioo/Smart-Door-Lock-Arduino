@@ -77,11 +77,11 @@
 				<!-- End of Topbar -->
 
 				<!-- Table -->
-				<!-- DataTables Example -->
+				<!-- Doors DataTable -->
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
 						<div class="d-flex flex-row justify-content-between align-items-center">
-							<h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+							<h6 class="m-0 font-weight-bold text-primary">List of Doors</h6>
 							<a href="{{ route('doors.create') }}" class="btn btn-primary">
 								+ Add Door
 							</a>
