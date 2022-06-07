@@ -118,7 +118,7 @@
 											<div>
 												<a href="#" class="btn btn-primary"
 													onclick="event.preventDefault();
-													document.getElementById('status-form').submit();">
+													document.getElementById('status-form-{{ $loop->iteration }}').submit();">
 													@if ($door->is_locked == false)
 													<i class="fas fa-lock"></i>
 													<span>Lock</span>
@@ -134,17 +134,18 @@
 												</a>
 
 												<a href="#" class="btn btn-danger" onclick="event.preventDefault();
-														 document.getElementById('delete-form').submit();">
+														 document.getElementById('delete-form-{{ $loop->iteration }}').submit();">
 													<i class="far fa-trash-alt"></i>
 													<span>Delete</span>
 												</a>
-												<form id="status-form" action="{{ route('doors.update', $door->id) }}" method="POST">
+												<form id="status-form-{{ $loop->iteration }}" action="{{ route('doors.update', $door->id) }}" method="POST">
 													@csrf
 													@method('PATCH')
+													<input type="hidden" name="name" value="{{ $door->name }}">
 													<input type="hidden" name="is_locked"
 														value="{{ $door->is_locked == false ? 1 : 0}}">
 												</form>
-												<form id="delete-form" action="{{ route('doors.destroy', $door->id) }}"
+												<form id="delete-form-{{ $loop->iteration }}" action="{{ route('doors.destroy', $door->id) }}"
 													method="POST">
 													@csrf
 													@method('DELETE')
