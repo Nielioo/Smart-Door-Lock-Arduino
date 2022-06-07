@@ -80,7 +80,12 @@
 				<!-- DataTables Example -->
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+						<div class="d-flex flex-row justify-content-between align-items-center">
+							<h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+							<a href="{{ route('doors.create') }}" class="btn btn-primary">
+								+ Add Door
+							</a>
+						</div>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
@@ -102,24 +107,53 @@
 									</tr>
 								</tfoot>
 								<tbody>
+									@foreach ($user->doors as $door)
 									<tr>
-										<td>1</td>
-										<td>Main Door</td>
-										<td>Locked</td>
-										<td>edit delete</td>
+										<td>{{ $loop->iteration }}</td>
+										<td>{{ $door->name }}</td>
+										<td class="{{ $door->is_locked == false ? 'unlocked' : 'locked' }}">
+											{{ $door->is_locked == false ? 'Unlocked' : 'Locked' }}
+										</td>
+										<td>
+											<div>
+												<a href="#" class="btn btn-primary"
+													onclick="event.preventDefault();
+													document.getElementById('status-form').submit();">
+													@if ($door->is_locked == false)
+													<i class="fas fa-lock"></i>
+													<span>Lock</span>
+													@else
+													<i class="fas fa-lock-open"></i>
+													<span>Unlock</span>
+													@endif
+												</a>
+
+												<a href="{{ route('doors.edit', $door->id) }}" class="btn btn-info">
+													<i class="far fa-edit"></i>
+													<span>Edit</span>
+												</a>
+
+												<a href="#" class="btn btn-danger" onclick="event.preventDefault();
+														 document.getElementById('delete-form').submit();">
+													<i class="far fa-trash-alt"></i>
+													<span>Delete</span>
+												</a>
+												<form id="status-form" action="{{ route('doors.update', $door->id) }}" method="POST">
+													@csrf
+													@method('PATCH')
+													<input type="hidden" name="is_locked"
+														value="{{ $door->is_locked == false ? 1 : 0}}">
+												</form>
+												<form id="delete-form" action="{{ route('doors.destroy', $door->id) }}"
+													method="POST">
+													@csrf
+													@method('DELETE')
+												</form>
+												</span>
+											</div>
+										</td>
 									</tr>
-									<tr>
-										<td>2</td>
-										<td>Living Room Door</td>
-										<td>Unlocked</td>
-										<td>edit delete</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>Dining Room Door</td>
-										<td>Unlocked</td>
-										<td>edit delete</td>
-									</tr>
+									@endforeach
 								</tbody>
 							</table>
 						</div>

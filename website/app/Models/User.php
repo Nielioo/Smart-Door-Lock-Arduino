@@ -47,4 +47,9 @@ class User extends Authenticatable
 		return self::where('id', $id)
 			->first();
 	}
+
+	public function doors()
+	{
+		return $this->hasMany(Door::class, 'user_id', 'id');
+	}
 }

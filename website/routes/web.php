@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DoorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,8 @@ Auth::routes();
 Route::middleware(['auth'])->group(function() {
 	Route::resources([
 		'/' => HomeController::class,
-		'/home' => HomeController::class,
+		'home' => HomeController::class,
+		'doors' => DoorController::class,
 	]);
 });
 

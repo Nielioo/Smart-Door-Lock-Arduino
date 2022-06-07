@@ -11280,3 +11280,11 @@
   body.sidebar-toggled footer.sticky-footer {
     width: 100%;
   }
+
+  .unlocked {
+	  color: var(--danger);
+  }
+
+  .locked {
+	color: var(--success);
+}
