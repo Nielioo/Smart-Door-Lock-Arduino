@@ -41,13 +41,13 @@ class DoorController extends Controller
 	{
 		$validated = $request->validate([
 			'name' => 'required|string',
-			'is_locked' => 'required|boolean',
+			'password' => 'required',
 		]);
 
 		Door::create([
 			'user_id' => Auth::id(),
 			'name' => $validated['name'],
-			'is_locked' => $validated['is_locked'],
+			'password' => Hash::make($validated['password']),
 		]);
 
 		return redirect(route('home.index'));
@@ -115,7 +115,6 @@ class DoorController extends Controller
 
 		// Definitely from edit
 		$door->name = $validated['name'];
-		$door->is_locked = $validated['is_locked'];
 
 		// Change password
 		if (!empty($validated['password'])) {
