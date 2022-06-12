@@ -6,6 +6,7 @@ use App\Models\Door;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DoorController extends Controller
 {
@@ -88,16 +89,40 @@ class DoorController extends Controller
 	public function update(Request $request, $doorId)
 	{
 		$validated = $request->validate([
-			'name' => 'required|string',
+			'name' => 'nullable',
 			'is_locked' => 'required|boolean',
+			'password' => 'nullable'
 		]);
 
-		DB::table('doors')
-			->where('id', $doorId)
-			->update([
-				'name' => $validated['name'],
-				'is_locked' => $validated['is_locked'],
-			]);
+		$door = Door::getDoorById($doorId);
+
+		# Possibly changing status
+		if (empty($validated['name'])) {
+			// Change door status
+			if (!empty($validated['password'])) {
+				if (Hash::check($validated['password'], $door->password)) {
+					$door->is_locked = $validated['is_locked'];
+
+					$door->save();
+				}
+
+				return redirect(route('home.index'));
+			}
+
+			// Invalid edit
+			return redirect()->back();
+		}
+
+		// Definitely from edit
+		$door->name = $validated['name'];
+		$door->is_locked = $validated['is_locked'];
+
+		// Change password
+		if (!empty($validated['password'])) {
+			$door->password = Hash::make($validated['password']);
+		}
+
+		$door->save();
 
 		return redirect(route('home.index'));
 	}

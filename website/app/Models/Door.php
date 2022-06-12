@@ -18,6 +18,7 @@ class Door extends Model
 		'user_id',
 		'name',
 		'is_locked',
+		'password',
 	];
 
 	public static function getDoorById($id)

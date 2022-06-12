@@ -18,6 +18,7 @@ return new class extends Migration
 			$table->bigInteger('user_id')->unsigned();
             $table->string('name');
             $table->boolean('is_locked')->default(false);
+			$table->string('password');
             $table->timestamps();
         });
     }
