@@ -27,7 +27,7 @@
         <span></span><br>
         <span></span><br>
         <span></span><br>
-        <a href="/dashboard">Back to dashboard!</p>
+        <a href="/home">Back to home!</p>
     </div>
 </body>
 </html>
