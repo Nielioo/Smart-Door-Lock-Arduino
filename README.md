@@ -1,6 +1,6 @@
 # Smart-Door-Lock-Arduino
 
-Internet Of Things Final Project Semester 4 (Juni 2022)
+Internet Of Things Semester 4 (Juni 2022)
 
 How to use this project (step by step):
 > **After Pulling from GitHub**
